@@ -54,6 +54,9 @@ router.post("/signup", async (req, res) => {
   });
 });
 
+
+
+
 const signinBody = zod.object({
   username: zod.string().email(),
   password: zod.string(),
@@ -82,6 +85,7 @@ router.post("/signin", async (req, res) => {
 
     res.json({
       token: token,
+      message: "user signined successfully",
     });
     return;
   }
@@ -124,7 +128,7 @@ router.put("/update", authMiddleware, async (req, res) => {
   });
 });
 
-router.get("/bulk", async(req, res) => {
+router.get("/bulk", async (req, res) => {
   const filter = req.query.filter || "";
   const users = await User.find({
     $or: [
@@ -141,9 +145,14 @@ router.get("/bulk", async(req, res) => {
     ],
   });
 
-res.json({
-  users
-})
+  res.json({
+    user: users.map((user) => ({
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      _id: user._id,
+    })),
+  });
 });
 
 module.exports = router;

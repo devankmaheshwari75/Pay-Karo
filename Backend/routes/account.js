@@ -9,9 +9,11 @@ router.get("/balance", authMiddleware, async (req, res) => {
   const account = await Account.findOne({
     userId: req.userId,
   });
+
+  console.log(account);
   res.status(200).json({
-    message: "Balance feteched successfully",
-    balance: account.balance,
+    message: "Balance fetched successfully",
+    balance: Math.ceil(account.balance * 100) / 100, // Rounds up to 2 decimal places
   });
 });
 
@@ -71,7 +73,4 @@ router.post("/transfer", authMiddleware, async (req, res) => {
   });
 });
 
-
-module.exports  = 
-    router
-
+module.exports = router;
