@@ -21,6 +21,8 @@ export const Dashboard = () => {
                 }  
             });  
 
+            console.log("hi");
+
             console.log(response);
             setBalance(response.data.balance); // Assuming the response structure is correct  
         } catch (error) {  
@@ -35,7 +37,7 @@ export const Dashboard = () => {
         <Appbar />
         <div className="m-8">
             <Balance value={balance} />
-            <Users />
+            <Users  balance ={balance} />
         </div>
     </div>
 }

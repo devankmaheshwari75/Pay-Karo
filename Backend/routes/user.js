@@ -128,31 +128,51 @@ router.put("/update", authMiddleware, async (req, res) => {
   });
 });
 
-router.get("/bulk", async (req, res) => {
-  const filter = req.query.filter || "";
-  const users = await User.find({
-    $or: [
-      {
-        firstName: {
-          $regex: filter,
-        },
-      },
-      {
-        lastName: {
-          $regex: filter,
-        },
-      },
-    ],
-  });
 
-  res.json({
-    user: users.map((user) => ({
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      _id: user._id,
-    })),
-  });
-});
+
+router.get("/bulk", authMiddleware, async (req, res) => {  
+  const filter = req.query.filter || "";  
+  const currentUserId = req.userId; // Get the current user's ID from the request object  
+  console.log(currentUserId);
+
+  try {  
+      const users = await User.find({  
+        
+          _id: { $ne: currentUserId }, // Exclude the current user  
+          $or: [  
+              {  
+                  firstName: {  
+                      $regex: filter,  
+                      $options: 'i' // Optionally add case insensitive search  
+                  },  
+              },  
+              {  
+                  lastName: {  
+                      $regex: filter,  
+                      $options: 'i' // Optionally add case insensitive search  
+                  },  
+              },  
+          ]  
+      });  
+
+      // Return a filtered list of users  
+      res.json({  
+          user: users.map((user) => ({  
+              username: user.username,  
+              firstName: user.firstName,  
+              lastName: user.lastName,  
+              _id: user._id,  
+          })),  
+      });  
+  } catch (error) {  
+      console.error("Error fetching users:", error);  
+      res.status(500).json({message: "Internal Server Error"});  
+  }  
+});  
+
+
+
+
+
 
 module.exports = router;
