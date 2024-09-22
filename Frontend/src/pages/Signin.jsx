@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid"; // Importing icons for password visibility toggle
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../../config";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -16,7 +17,7 @@ const Signin = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/user/signin",
+        `${BACKEND_URL}/api/v1/user/signin`,
         {
           username,
           password,

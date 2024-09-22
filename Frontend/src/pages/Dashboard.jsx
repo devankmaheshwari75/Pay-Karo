@@ -6,6 +6,7 @@ import { Appbar } from "../components/Appbar"
 import { Balance } from "../components/Balance"
 import { Users } from "../components/Users.jsx"
 import axios from "axios";
+import { BACKEND_URL } from "../../config";
 
 export const Dashboard = () => {
 
@@ -15,7 +16,7 @@ export const Dashboard = () => {
   useEffect(() => {  
     const fetchBalance = async () => {  
         try {  
-            const response = await axios.get("http://localhost:3000/api/v1/account/balance", {  
+            const response = await axios.get(`${BACKEND_URL}/api/v1/account/balance`, {  
                 headers: {  
                     Authorization: "Bearer " + localStorage.getItem("token")  
                 }  

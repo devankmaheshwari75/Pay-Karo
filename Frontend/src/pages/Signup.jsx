@@ -3,6 +3,7 @@ import axios from "axios";
 import { EyeIcon, EyeOffIcon } from "@heroicons/react/solid"; // Assuming you're using Heroicons
 
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../../config";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
@@ -11,6 +12,8 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const navigate = useNavigate();
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +23,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/user/signup",
+        `${BACKEND_URL}/api/v1/user/signup`,
         {
           username,
           firstName,

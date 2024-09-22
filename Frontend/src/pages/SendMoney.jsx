@@ -2,6 +2,7 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
 import { Appbar } from "../components/Appbar";
+import { BACKEND_URL } from "../../config";
 
 export const SendMoney = () => {
   const [searchParams] = useSearchParams();
@@ -12,7 +13,9 @@ export const SendMoney = () => {
   const [amount, setAmount] = useState(0);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+
   const navigate = useNavigate();
+
 
   const onSendMoney = async () => {
     setMessage("");
@@ -26,7 +29,7 @@ export const SendMoney = () => {
           }  
       
       const response = await axios.post(
-        "http://localhost:3000/api/v1/account/transfer",
+        `${BACKEND_URL}/api/v1/account/transfer`,
         {
           to: id,
           amount,
