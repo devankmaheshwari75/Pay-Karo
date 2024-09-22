@@ -2,9 +2,9 @@
   "name": "your-project-name",  
   "version": "1.0.0",  
   "scripts": {  
-    "build": "vite build", // Replace this with the actual build command for your front end  
-    "start": "serve -s dist", // Ensure this correctly serves from the build directory  
-    "dev": "nodemon index.js" // Adjust this if your entry file name is different  
+    "build": "vite build", 
+    "start": "node index.js", 
+    "dev": "nodemon index.js" 
   },  
   "dependencies": {  
     "cors": "^2.8.5",  
