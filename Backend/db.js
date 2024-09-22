@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const db  = async()=>{
     try{
-        await mongoose.connect('mongodb://localhost:27017/paytm-clone?replicaSet=rs0');
+        await mongoose.connect('mongodb+srv://maheshwaridevank01:LGc5xFzR4iZR8Ywh@cluster0.vl2mb.mongodb.net/paytm-clone');
         console.log("mongodb is connected");
 
     }
