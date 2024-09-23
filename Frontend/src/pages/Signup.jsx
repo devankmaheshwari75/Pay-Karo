@@ -62,6 +62,7 @@ const Signup = () => {
               type="text"
               id="username"
               value={username}
+              placeholder="example@gmail.com"
               onChange={(e) => setUsername(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
@@ -78,6 +79,7 @@ const Signup = () => {
               type="text"
               id="firstName"
               value={firstName}
+              placeholder="Devank"
               onChange={(e) => setFirstName(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
@@ -94,6 +96,7 @@ const Signup = () => {
               type="text"
               id="lastName"
               value={lastName}
+              placeholder="Maheshwari"
               onChange={(e) => setLastName(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
@@ -110,6 +113,7 @@ const Signup = () => {
               type={isPasswordVisible ? "text" : "password"}
               id="password"
               value={password}
+              placeholder="**********"
               onChange={(e) => setPassword(e.target.value)}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
